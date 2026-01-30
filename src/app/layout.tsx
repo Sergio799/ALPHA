@@ -66,7 +66,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className="dark">
+      <html lang="en" className="dark" suppressHydrationWarning>
         <body className={cn("antialiased", fontSpaceGrotesk.variable, fontLora.variable)}>
           {children}
           <Toaster />

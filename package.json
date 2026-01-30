@@ -15,7 +15,7 @@
     "verify": "node verify-demo.js"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.2.8",
+    "@clerk/nextjs": "^6.37.1",
     "@genkit-ai/google-genai": "^1.28.0",
     "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^4.1.3",
