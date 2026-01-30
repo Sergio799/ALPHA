@@ -35,9 +35,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
   
   // Headers for security and caching
   async headers() {
