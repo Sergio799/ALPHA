@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Lora } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
@@ -17,10 +17,16 @@ const fontLora = Lora({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
 
 export const metadata: Metadata = {
   title: "ALPHA 2.0 - AI-Powered Investment Platform | Smart Portfolio Management",
-  description: "ALPHA combines behavioral analytics, predictive forecasting, and personalized AI advice to help you navigate the markets with confidence. Intelligent investing powered by AI.",
+  description: "ALPHA combines institutional-grade quantitative analysis, predictive forecasting, and personalized AI advice to help you navigate the markets with confidence. Intelligent investing powered by AI.",
   keywords: ["AI investing", "portfolio management", "stock analysis", "investment advisor", "market predictions", "financial planning"],
   authors: [{ name: "ALPHA" }],
   creator: "ALPHA",
@@ -47,12 +53,6 @@ export const metadata: Metadata = {
     title: "ALPHA 2.0 - AI-Powered Investment Platform",
     description: "Intelligent investing powered by AI",
     creator: "@alpha",
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
   },
   icons: {
     icon: "/favicon.ico",
