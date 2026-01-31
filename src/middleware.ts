@@ -1,24 +1,41 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/api/health',
-  '/api/stock-price(.*)',
-  '/api/stock-prices(.*)',
-  '/api/stock-search(.*)',
-  '/api/test-price(.*)',
-]);
+export function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
 
-export default clerkMiddleware(async (auth, req) => {
-  // If it's not a public route, require authentication
-  if (!isPublicRoute(req)) {
-    await auth.protect();
+  // Public routes that don't need authentication
+  const publicRoutes = [
+    '/',
+    '/sign-in',
+    '/sign-up',
+    '/api/health',
+    '/api/stock-price',
+    '/api/stock-prices',
+    '/api/stock-search',
+    '/api/test-price',
+  ];
+
+  // Check if the route is public
+  const isPublicRoute = publicRoutes.some(route => 
+    pathname === route || pathname.startsWith(route + '/')
+  );
+
+  // If it's a public route, allow it
+  if (isPublicRoute) {
+    return NextResponse.next();
   }
-});
+
+  // For protected routes, check if user has auth cookie
+  const authCookie = request.cookies.get('__session');
+  
+  if (!authCookie && pathname.startsWith('/dashboard')) {
+    // Redirect to sign-in if trying to access dashboard without auth
+    return NextResponse.redirect(new URL('/sign-in', request.url));
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: [
