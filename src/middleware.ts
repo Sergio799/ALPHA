@@ -1,16 +1,24 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-export function middleware(request: NextRequest) {
-  // Only apply middleware if Clerk secret key is configured
-  if (!process.env.CLERK_SECRET_KEY || process.env.CLERK_SECRET_KEY.startsWith('sk_test_placeholder')) {
-    return NextResponse.next();
+const isPublicRoute = createRouteMatcher([
+  '/',
+  '/sign-in(.*)',
+  '/sign-up(.*)',
+  '/api/health',
+  '/api/stock-price(.*)',
+  '/api/stock-prices(.*)',
+  '/api/stock-search(.*)',
+  '/api/test-price(.*)',
+]);
+
+export default clerkMiddleware(async (auth, req) => {
+  // If it's not a public route, require authentication
+  if (!isPublicRoute(req)) {
+    await auth.protect();
   }
-
-  // If Clerk is properly configured, use Clerk middleware
-  // For now, just pass through
-  return NextResponse.next();
-}
+});
 
 export const config = {
   matcher: [
