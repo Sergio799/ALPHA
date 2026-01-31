@@ -3,6 +3,8 @@ import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { DashboardNav } from "@/components/dashboard/Nav";
 
+export const dynamic = 'force-dynamic';
+
 export default function DashboardLayout({
   children,
 }: {

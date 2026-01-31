@@ -59,13 +59,27 @@ export const metadata: Metadata = {
   },
 };
 
+const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Only wrap with ClerkProvider if we have a valid publishable key
+  if (!publishableKey || publishableKey.startsWith('pk_test_placeholder')) {
+    return (
+      <html lang="en" className="dark" suppressHydrationWarning>
+        <body className={cn("antialiased", fontSpaceGrotesk.variable, fontLora.variable)}>
+          {children}
+          <Toaster />
+        </body>
+      </html>
+    );
+  }
+
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ""}>
+    <ClerkProvider publishableKey={publishableKey}>
       <html lang="en" className="dark" suppressHydrationWarning>
         <body className={cn("antialiased", fontSpaceGrotesk.variable, fontLora.variable)}>
           {children}
