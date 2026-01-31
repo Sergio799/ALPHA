@@ -20,11 +20,6 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   
-  // Experimental features for better performance
-  experimental: {
-    optimizePackageImports: ['lucide-react', 'recharts', '@radix-ui/react-icons'],
-  },
-  
   // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
