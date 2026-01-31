@@ -3,11 +3,11 @@ import OpenAI from 'openai';
 const apiKey = process.env.OPENAI_API_KEY;
 
 if (!apiKey) {
-  throw new Error('OPENAI_API_KEY is not set');
+  console.warn('OPENAI_API_KEY is not set - chatbot will not work');
 }
 
 const openai = new OpenAI({
-  apiKey: apiKey,
+  apiKey: apiKey || 'sk-placeholder',
 });
 
 export async function generateText(
@@ -15,6 +15,10 @@ export async function generateText(
   prompt: string,
   systemMessage?: string
 ): Promise<string> {
+  if (!apiKey) {
+    throw new Error('OPENAI_API_KEY is not configured. Please add it to your environment variables.');
+  }
+
   try {
     const messages: Array<{ role: 'system' | 'user'; content: string }> = [];
 
