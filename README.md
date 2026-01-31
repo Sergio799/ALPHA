@@ -236,6 +236,10 @@ GET  /api/test-price          # Test price endpoint
 # Authentication (Clerk)
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key
 CLERK_SECRET_KEY=your_secret
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard/portfolio
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard/portfolio
 
 # AI (Google Genkit)
 GOOGLE_GENKIT_API_KEY=your_key
@@ -247,6 +251,27 @@ NEWS_API_KEY=your_key
 # Database
 DATABASE_URL=your_database_url
 ```
+
+## 🚀 Deployment
+
+### Vercel Deployment
+
+1. Push your code to GitHub
+2. Connect your repository to [Vercel](https://vercel.com)
+3. Add the following environment variables in Vercel project settings:
+
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard/portfolio
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard/portfolio
+GOOGLE_GENAI_API_KEY=your_google_genai_key
+ALPHA_VANTAGE_API_KEY=your_alpha_vantage_key
+```
+
+4. Deploy with a single click or automatic deployments on push
 
 ## 📈 Performance Metrics
 
