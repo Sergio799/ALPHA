@@ -65,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ""}>
       <html lang="en" className="dark" suppressHydrationWarning>
         <body className={cn("antialiased", fontSpaceGrotesk.variable, fontLora.variable)}>
           {children}
