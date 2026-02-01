@@ -1,6 +1,6 @@
 # ALPHA 2.0 - AI-Powered Investment Platform
 
-**Intelligent investing powered by AI.** ALPHA combines institutional-grade quantitative analysis, predictive forecasting, and personalized advice to help you navigate the markets with confidence.
+Intelligent investing powered by AI. ALPHA combines institutional-grade quantitative analysis, predictive forecasting, and personalized advice to help you navigate the markets with confidence.
 
 ## 🚀 Overview
 
